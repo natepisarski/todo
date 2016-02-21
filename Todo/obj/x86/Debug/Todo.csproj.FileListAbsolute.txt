@@ -1,0 +1,5 @@
+C:\Users\lab1\Downloads\todo-master\todo-master\Todo\obj\x86\Debug\Todo.csprojResolveAssemblyReference.cache
+C:\Users\lab1\Downloads\todo-master\todo-master\Todo\bin\Debug\Todo.exe
+C:\Users\lab1\Downloads\todo-master\todo-master\Todo\bin\Debug\Todo.pdb
+C:\Users\lab1\Downloads\todo-master\todo-master\Todo\obj\x86\Debug\Todo.exe
+C:\Users\lab1\Downloads\todo-master\todo-master\Todo\obj\x86\Debug\Todo.pdb
