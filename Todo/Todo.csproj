@@ -37,31 +37,35 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Task.cs" />
-    <Compile Include="..\..\..\HumDrum-master\HumDrum-master\HumDrum\Collections\Sections.cs">
+    <Compile Include="..\..\HumDrum\HumDrum\Collections\Sections.cs">
       <Link>HumDrum\Collections\Sections.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\HumDrum-master\HumDrum-master\HumDrum\Collections\Transformations.cs">
+    <Compile Include="..\..\HumDrum\HumDrum\Collections\Transformations.cs">
       <Link>HumDrum\Collections\Transformations.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\HumDrum-master\HumDrum-master\HumDrum\Operations\DirectorySearch.cs">
+    <Compile Include="..\..\HumDrum\HumDrum\Operations\DirectorySearch.cs">
       <Link>HumDrum\Operations\DirectorySearch.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\HumDrum-master\HumDrum-master\HumDrum\Operations\Logger.cs">
+    <Compile Include="..\..\HumDrum\HumDrum\Operations\Logger.cs">
       <Link>HumDrum\Operations\Logger.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\HumDrum-master\HumDrum-master\HumDrum\Operations\Servitor.cs">
+    <Compile Include="..\..\HumDrum\HumDrum\Operations\Servitor.cs">
       <Link>HumDrum\Operations\Servitor.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\HumDrum-master\HumDrum-master\HumDrum\Recursion\TailHelper.cs">
+    <Compile Include="..\..\HumDrum\HumDrum\Recursion\TailHelper.cs">
       <Link>HumDrum\Recursion\TailHelper.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\HumDrum-master\HumDrum-master\HumDrum\Structures\Direction.cs">
+    <Compile Include="..\..\HumDrum\HumDrum\Structures\Direction.cs">
       <Link>HumDrum\Structures\Direction.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\HumDrum-master\HumDrum-master\HumDrum\Structures\Tree.cs">
+    <Compile Include="..\..\HumDrum\HumDrum\Structures\Tree.cs">
       <Link>HumDrum\Structures\Tree.cs</Link>
     </Compile>
-    <Compile Include="HumDrum\Structures\BindingsTable.cs" />
+    <Compile Include="HumDrum\Structures\BindignsTable.cs" />
+    <Compile Include="TaskTable.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="HumDrum\" />
+  </ItemGroup>
 </Project>

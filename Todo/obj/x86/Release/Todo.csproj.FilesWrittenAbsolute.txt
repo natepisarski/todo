@@ -1,0 +1,5 @@
+/home/nate/Code/todo/Todo/obj/x86/Release/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/home/nate/Code/todo/Todo/bin/Release/Todo.exe.mdb
+/home/nate/Code/todo/Todo/bin/Release/Todo.exe
+/home/nate/Code/todo/Todo/obj/x86/Release/Todo.exe
+/home/nate/Code/todo/Todo/obj/x86/Release/Todo.exe.mdb

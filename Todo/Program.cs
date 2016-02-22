@@ -49,9 +49,7 @@ namespace Todo
 		/// </param>
 		public static void Main (string[] args)
 		{
-			foreach (string glob in Sections.Globs("TODO d{d1, d2} f{f1, f2}: Here is all of the text", '{', '}')) {
-				Console.WriteLine (glob);
-			}
+			var x = new Task ("TODO", "TODO dependencies{x11grab, x11} date{2015} vowels{a, e, i, o, u}: Here we go motherfucker");
 
 			for (;;) {
 				;
