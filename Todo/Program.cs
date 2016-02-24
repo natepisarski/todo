@@ -49,12 +49,12 @@ namespace Todo
 		/// </param>
 		public static void Main (string[] args)
 		{
-			var c = new Task ("TODO", "TODO dependencies{a, b} name{c}: Performs Action C");
+			var c = new Task ("TODO", "TODO dependencies{a,b} name{c}: Performs Action C");
 			var b = new Task ("TODO", "TODO dependencies{a} name{b}: Performs Action B");
 			var a = new Task ("TODO", "TODO name{a}: Perofrms Action A");
 			TaskTable t = new TaskTable (a, b, c);
 
-			foreach (string s in t.GenerateContract("c")) {
+			foreach (string s in t.GenerateContract(c)) {
 				Console.WriteLine (s);
 			}
 			for (;;) {

@@ -7,20 +7,20 @@ namespace Todo
 {
 	public static class Predicates
 	{
-		public static bool Any(IEnumerable<bool> list)
+		public static bool Any(List<bool> list)
 		{
-			if (list.Length().Equals(0))
+			if (list.Length() == 0)
 				return true;
 			else
-				return list.Get (0) || Any (list.Tail ());
+				return list.Get<bool> (0) || Any (list.Tail ());
 		}
 
-		public static bool All(IEnumerable<bool> list)
+		public static bool All(List<bool> list)
 		{
-			if (list.Length().Equals(0))
+			if (list.Length() == 0)
 				return true;
 			else
-				return list.Get (0) && Any (list.Tail ());
+				return list.Get<bool> (0) && Any (list.Tail<bool> ());
 		}
 	}
 }

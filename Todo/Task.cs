@@ -43,17 +43,31 @@ namespace Todo
 			}
 
 			// Alright, so taskLine.Length is used instead of an abitrarily high integer because I don't know what is being thrown at this
-			Text = Sections.RepairString (Transformations.Subsequence (Sections.EscapeSplit (taskLine, ':'), 1, taskLine.Length));
+			Text = Sections.RepairString (Transformations.Subsequence (Sections.EscapeSplit (taskLine, ':'), 1, taskLine.Length).ToArray());
 		}
 
 		public string[] Fetch(string item)
 		{
-			return Metadata.Get (item);
+			return Metadata.Lookup (item);
 		}
 
 		public bool Has(string metadataIdentifier)
 		{
-			return Metadata.Get (metadataIdentifier).Length > 0;
+			return Metadata.Lookup (metadataIdentifier).Length > 0;
+		}
+
+		/* Special Metadata */
+		public string GetName()
+		{
+			if (Has ("name"))
+				return Fetch ("name").Get (0);
+			else
+				throw new Exception ("Something has called GetName(), but task " + this + " does not have one.");
+		}
+
+		public string[] GetDependencies()
+		{
+			return Fetch ("dependencies");
 		}
 	}
 }
