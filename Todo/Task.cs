@@ -45,6 +45,16 @@ namespace Todo
 			// Alright, so taskLine.Length is used instead of an abitrarily high integer because I don't know what is being thrown at this
 			Text = Sections.RepairString (Transformations.Subsequence (Sections.EscapeSplit (taskLine, ':'), 1, taskLine.Length));
 		}
+
+		public string[] Fetch(string item)
+		{
+			return Metadata.Get (item);
+		}
+
+		public bool Has(string metadataIdentifier)
+		{
+			return Metadata.Get (metadataIdentifier).Length > 0;
+		}
 	}
 }
 
