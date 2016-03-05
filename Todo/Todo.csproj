@@ -28,6 +28,7 @@
     <WarningLevel>4</WarningLevel>
     <Externalconsole>true</Externalconsole>
     <PlatformTarget>x86</PlatformTarget>
+    <Commandlineparameters>/home/nate/Code/TEST_DIRECTORY detailed</Commandlineparameters>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -48,6 +49,7 @@
     <Compile Include="HumDrum\Structures\Direction.cs" />
     <Compile Include="HumDrum\Structures\Tree.cs" />
     <Compile Include="HumDrum\Collections\Predicates.cs" />
+    <Compile Include="TaskScan.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

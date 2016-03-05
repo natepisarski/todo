@@ -9,7 +9,7 @@ namespace Todo
 {
 	public class TaskTable
 	{
-		List<Task> Tasks { get; set; }
+		public List<Task> Tasks { get; set; }
 
 
 		public TaskTable ()
@@ -39,9 +39,15 @@ namespace Todo
 		}
 
 	
-		public IEnumerable<Task> GetTaskDependencies(string name)
+		public List<Task> GetTaskDependencies(string name)
 		{
-			return (from x in GetTaskByName (name).Fetch (name) select GetTaskByName(x));
+			var attempt = new List<Task>();
+			try{
+				attempt = (from x in GetTaskByName (name).Fetch (name) select GetTaskByName(x)).ToList();
+			}catch(Exception e){
+				return new List<Task> ();
+			}
+			return attempt;
 		}
 
 		/// <summary>June 3rd
@@ -52,16 +58,20 @@ namespace Todo
 		/// <param name="topLevelDependencies">Top level dependencies.</param>
 		private bool NotCircular(string taskName, List<Task> topLevelDependencies)
 		{
-			var t = GetTaskByName (taskName);
-
-			if (topLevelDependencies.Contains (t))
-				return false;
-			else if (!t.Has ("dependencies"))
+			try {
+				var t = GetTaskByName (taskName);
+					
+				if (topLevelDependencies.Contains (t))
+					return false;
+				else if (!t.Has ("dependencies"))
+					return true;
+				else 
+					return 
+						Predicates.All (new List<bool>((from dependant in t.Fetch ("dependencies")
+							select NotCircular (dependant, topLevelDependencies.Tack(t)))));
+			}catch(Exception e) {
 				return true;
-			else 
-				return 
-					Predicates.All (new List<bool>((from dependant in t.Fetch ("dependencies")
-						select NotCircular (dependant, topLevelDependencies.Tack(t)))));
+			}
 		}
 
 		public bool IsCircular(string taskName)
@@ -74,15 +84,27 @@ namespace Todo
 			if (IsCircular(taskName))
 				throw new Exception (taskName + " seems to incur a circular dependency.");
 
-			var t = GetTaskByName (taskName);
+			Task t;
+			try{
+				t = GetTaskByName (taskName);
+			}catch(Exception e) {
+				return new List<Task> ();
+			}
+
 			var totalDependencies = new List<Task>();
 
 			if (t.Has ("dependencies")) {
 				var localDependencies = new List<Task> ();
 
 				foreach (string depname in t.Fetch("dependencies"))
-					localDependencies.Add (GetTaskByName (depname));
-
+				{
+					try
+					{
+						localDependencies.Add (GetTaskByName (depname));
+					}catch(Exception e){
+						
+					}
+				}
 				 totalDependencies = new List<Task> (localDependencies);
 
 				foreach (Task dependency in localDependencies)
@@ -103,7 +125,38 @@ namespace Todo
 
 			foreach (Task task in dependencies)
 				contract.Add (task.Text);
+			
 			contract.Add (t.Text);
+			return contract.ToArray();
+		}
+
+
+		public string[] GenerateContract()
+		{
+			var tasks = new List<string> ();
+
+			foreach (Task t in Tasks) 
+				tasks.AddRange (GenerateContract (t));
+
+			return Transformations.RemoveDuplicates (tasks);
+
+		}
+
+		public string[] DetailedContract()
+		{
+			List<string> contract = new List<string> ();
+
+			foreach (Task t in Tasks) {
+				contract.Add ("Entry from file " + t.Fetch ("file").Get(0) + ":");
+
+				foreach (string key in t.Metadata.Keyset())
+					if(!key.Equals("file"))
+						contract.Add (t.Consolidated(key));
+				
+				contract.Add ("Task: " + t.Text);
+				contract.Add ("\n");
+			}
+
 			return contract.ToArray();
 		}
 	}

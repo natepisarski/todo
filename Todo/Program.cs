@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+
 using HumDrum.Collections;
 using System.Collections.Generic;
 
@@ -49,16 +51,21 @@ namespace Todo
 		/// </param>
 		public static void Main (string[] args)
 		{
-			var c = new Task ("TODO", "TODO dependencies{a,b} name{c}: Performs Action C");
-			var b = new Task ("TODO", "TODO dependencies{a} name{b}: Performs Action B");
-			var a = new Task ("TODO", "TODO name{a}: Perofrms Action A");
-			TaskTable t = new TaskTable (a, b, c);
+			TaskScan scanner = new TaskScan (args [0], "TODO", SearchOption.AllDirectories);
+			scanner.BuildTable ();
 
-			foreach (string s in t.GenerateContract(c)) {
-				Console.WriteLine (s);
-			}
-			for (;;) {
-				;
+			switch (args [1]) {
+			case "contract":
+				Console.WriteLine ("Your TODO contract is as follows: \n");
+				foreach (string task in scanner.Tasks.GenerateContract()) {
+					Console.WriteLine (task);
+				}
+				break;
+			case "detailed":
+				Console.WriteLine ("Your detailed TODO contract is as follows: \n");
+				foreach (string s in scanner.Tasks.DetailedContract())
+					Console.WriteLine (s);
+				break;
 			}
 		}
 	}

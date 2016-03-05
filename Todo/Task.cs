@@ -14,7 +14,7 @@ namespace Todo
 	/// </summary>
 	public class Task
 	{
-		public BindingsTable<string, string> Metadata;
+		public BindingsTable<string, string> Metadata { get; set; }
 
 		public string Text;
 		public string Key;
@@ -27,13 +27,14 @@ namespace Todo
 		{
 			Key = key;
 			Metadata = new BindingsTable<string, string> ();
+			var treatedLine = new string (Transformations.StartingWith (taskLine, key).ToArray ());
 
 			// Treats anything{with brackets} like one word.
 			var meta = Transformations.WhileInclusive (
-				           Sections.Globs (taskLine, '{', '}'),
+				           Sections.Globs (treatedLine, '{', '}'),
 				x => (! (x.Contains (":"))));
 
-			if (!meta [0].Equals (Key))
+			if (!meta[0].Contains (Key))
 				return;
 
 			foreach (string metadataField in Transformations.Subsequence(meta, 1, meta.Length())) {
@@ -56,6 +57,16 @@ namespace Todo
 			return Metadata.Lookup (metadataIdentifier).Length > 0;
 		}
 
+		public string Consolidated(string metadataIdentifier)
+		{
+			var containing = Metadata.Lookup (metadataIdentifier);
+			string final = metadataIdentifier + ": ";
+
+			foreach (string item in containing)
+				final += (item + ",");
+
+			return new string(Transformations.Subsequence (final, 0, final.Length () - 1).ToArray());
+		}
 		/* Special Metadata */
 		public string GetName()
 		{
@@ -68,6 +79,11 @@ namespace Todo
 		public string[] GetDependencies()
 		{
 			return Fetch ("dependencies");
+		}
+
+		public string ToString()
+		{
+			return Text;
 		}
 	}
 }
