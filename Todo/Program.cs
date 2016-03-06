@@ -11,60 +11,54 @@ namespace Todo
 	/// </summary>
 	class MainClass
 	{
+		public static void Help()
+		{
+			Console.WriteLine ("TODO quick command manual");
+			Console.WriteLine ("--------------------------");
+			Console.WriteLine ("todo (contract|detailed|remove) (TASKNAME|all) dir1 dir2 dir3...");
+			Console.WriteLine ("Subsitute TASKNAME for a named task for contract and remove, or ALL for detailed");
+			Console.WriteLine ("Any number of directories can be listed at the end of the commands");
+		}
 
 		/// <summary>
-		/// Begins the program, with given command-line arguments.
-		/// 
-		/// A quick sumamry of a TODO:
-		/// Todo is a productivity utility for organizing how work should be done.
-		/// The anatomy of a TODO comment is
-		/// 
-		/// KEY NAME {DEPENDENCY1, DEPENDENCY2, ...}: TEXT
-		/// 
-		/// Where KEY is the TODO keyword (default: TODO), dependency is an optional
-		/// dependency. It is a task which must be completed before the first.
-		/// 
-		/// For example:
-		/// TODO groceries: Go get eggs and milk
-		/// TODO {groceries}: Come back home
-		/// 
-		/// The second TODO Task (which is anonymous) depends on the named Task "groceries", meaning
-		/// it should be completed before.
-		/// 
-		/// In order to allow for multi-line and multi-file TODOs, TODOs with the same name can be condensed
-		/// into one directive.
-		/// 
-		/// Any text before the TODO is ignored by the TODO generator
-		/// </summary>
-		/// <param name="args">Acceptable command-line arguments include:
-		/// 
-		/// --dir, -d DIR: Add DIR to the search path
-		/// -s, --strike NAME: Strike a named TODO from its occuring place.
-		/// -c, --contract: Print a contract of all TODOS in a human-readable format.
-		/// -p, --pack: Condense TODOs with the same name into one directive.
-		/// -n, --number: Show only the first n todos found.
-		/// -s, --skip: Skip the first n todos found
-		/// 
-		/// if -d isn't specified, the current working directory and all nested directories are scanned
-		/// for TODO comments. If -s or -c aren't listed, all of the TODO comments as they appear, and
-		/// which todo they are dependant on, and which file they are listed in.
+		/// The Main method. 
+		/// Expects "todo (contract|detailed|remove) (TASKNAME|ALL|) dir1 dir2 dir3...
 		/// </param>
 		public static void Main (string[] args)
 		{
-			TaskScan scanner = new TaskScan (args [0], "TODO", SearchOption.AllDirectories);
+			// Build the scanner table from the directory specified in args[0]
+			TaskScan scanner = new TaskScan (Transformations.Subsequence(args, (args[0].Equals("detailed")?1:2), args.Length()).ToArray(), "TODO", SearchOption.AllDirectories);
 			scanner.BuildTable ();
 
-			switch (args [1]) {
+			if (args.Length () < 3) {
+				Help ();
+				return;
+			}
+
+			switch (args [0]) {
 			case "contract":
 				Console.WriteLine ("Your TODO contract is as follows: \n");
-				foreach (string task in scanner.Tasks.GenerateContract()) {
+
+				foreach (string task in scanner.Tasks.GenerateContract(scanner.Tasks.GetTaskByName(args[1]))) 
 					Console.WriteLine (task);
-				}
+				
 				break;
+			
 			case "detailed":
 				Console.WriteLine ("Your detailed TODO contract is as follows: \n");
 				foreach (string s in scanner.Tasks.DetailedContract())
 					Console.WriteLine (s);
+				break;
+
+			case "remove":
+				try {
+					scanner.Tasks.GetTaskByName (args [1]).AttemptMark ();
+				} catch (Exception e) {
+					Console.WriteLine ("Task could not be properly removed from the file");
+				}
+				break;
+			default:
+				Help ();
 				break;
 			}
 		}

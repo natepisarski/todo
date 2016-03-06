@@ -28,7 +28,7 @@
     <WarningLevel>4</WarningLevel>
     <Externalconsole>true</Externalconsole>
     <PlatformTarget>x86</PlatformTarget>
-    <Commandlineparameters>/home/nate/Code/TEST_DIRECTORY detailed</Commandlineparameters>
+    <Commandlineparameters>remove thing1 /home/nate/Code/TEST_DIRECTORY</Commandlineparameters>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
