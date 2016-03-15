@@ -190,7 +190,7 @@ namespace Todo
 			foreach (Task t in Tasks) 
 				tasks.AddRange (GenerateContract (t));
 
-			return Transformations.RemoveDuplicates (tasks);
+			return Transformations.RemoveDuplicates (tasks).AsArray();
 
 		}
 

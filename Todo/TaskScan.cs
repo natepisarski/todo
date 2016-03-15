@@ -38,7 +38,7 @@ namespace Todo
 		/// <param name="directory">The directories to search for tasks</param>
 		/// <param name="key">The key for task lookup</param>
 		/// <param name="option">Whether or not to delve deeper into repositories</param>
-		public TaskScan (string[] directory, string key, SearchOption option)
+		public TaskScan (IEnumerable<string> directory, string key, SearchOption option)
 		{
 			TaskDir = new DirectorySearch (directory, option);
 			Tasks = new TaskTable ();

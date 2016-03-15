@@ -1,22 +1,13 @@
 ﻿<Properties StartupItem="Todo/Todo.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Todo/Task.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="../HumDrum/HumDrum/HumDrum/Operations/DirectorySearch.cs">
     <Files>
-      <File FileName="Todo/Task.cs" Line="135" Column="51" />
-      <File FileName="Todo/HumDrum/Structures/BindignsTable.cs" Line="1" Column="1" />
-      <File FileName="Todo/Program.cs" Line="46" Column="11" />
-      <File FileName="Todo/TaskTable.cs" Line="199" Column="43" />
-      <File FileName="Todo/HumDrum/Collections/Transformations.cs" Line="238" Column="14" />
-      <File FileName="Todo/HumDrum/Collections/Predicates.cs" Line="28" Column="54" />
-      <File FileName="Todo/HumDrum/Recursion/TailHelper.cs" Line="41" Column="4" />
-      <File FileName="Todo/HumDrum/Structures/BindingsTable.cs" Line="117" Column="65" />
-      <File FileName="Todo/HumDrum/Structures/Direction.cs" Line="1" Column="1" />
-      <File FileName="Todo/HumDrum/Structures/Tree.cs" Line="1" Column="1" />
-      <File FileName="Todo/TaskScan.cs" Line="72" Column="4" />
-      <File FileName="Todo/HumDrum/Operations/DirectorySearch.cs" Line="51" Column="66" />
-      <File FileName="Todo/HumDrum/Collections/Sections.cs" Line="231" Column="27" />
-      <File FileName="Todo/HumDrum/Operations/Logger.cs" Line="1" Column="1" />
-      <File FileName="Todo/HumDrum/Operations/Servitor.cs" Line="1" Column="1" />
+      <File FileName="Todo/Task.cs" Line="100" Column="84" />
+      <File FileName="Todo/Program.cs" Line="1" Column="1" />
+      <File FileName="Todo/TaskTable.cs" Line="193" Column="61" />
+      <File FileName="Todo/TaskScan.cs" Line="43" Column="14" />
+      <File FileName="../HumDrum/HumDrum/HumDrum/Collections/Transformations.cs" Line="1" Column="1" />
+      <File FileName="../HumDrum/HumDrum/HumDrum/Operations/DirectorySearch.cs" Line="24" Column="64" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

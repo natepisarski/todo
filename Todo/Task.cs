@@ -42,7 +42,7 @@ namespace Todo
 			Metadata = new BindingsTable<string, string> ();
 
 			// The "treated" line starts with the key and just contains the metadata and the text
-			var treatedLine = new string (Transformations.StartingWith (taskLine, key).ToArray ());
+			var treatedLine = new string (Transformations.StartingWith (taskLine, key).AsArray());
 
 			// Treats anything{with brackets} like one word.
 			var meta = Transformations.WhileInclusive (
@@ -50,20 +50,20 @@ namespace Todo
 				x => (! (x.Contains (":"))));
 
 			// meta[0] should actually be "KEY:" or "KEY"
-			if (!meta[0].Contains (Key))
+			if (!meta.Get(0).Contains (Key))
 				return;
 
 			// Read the metadata text into this Task's metadata structure.
 			foreach (string metadataField in Transformations.Subsequence(meta, 1, meta.Length())) {
 				Metadata.Associate (
 					// All text before {
-					new string(Transformations.While (metadataField, x => (!x.Equals ('{'))).ToArray()),
+					new string(Transformations.While (metadataField, x => (!x.Equals ('{'))).AsArray()),
 					// Everything in between { and }, split up based on commas
 					Sections.Internal (metadataField, '{', '}').Split (','));
 			}
 
 			// Alright, so taskLine.Length is used instead of an abitrarily high integer because I don't know what is being thrown at this
-			Text = Sections.RepairString (Transformations.Subsequence (Sections.EscapeSplit (taskLine, ':'), 1, taskLine.Length).ToArray());
+			Text = Sections.RepairString (Transformations.Subsequence (Sections.EscapeSplit (taskLine, ':'), 1, taskLine.Length).AsArray());
 		}
 
 		/// <summary>
@@ -97,7 +97,7 @@ namespace Todo
 			foreach (string item in containing)
 				final += (item + ",");
 
-			return new string(Transformations.Subsequence (final, 0, final.Length () - 1).ToArray());
+			return new string(Transformations.Subsequence (final, 0, final.Length () - 1).AsArray());
 		}
 
 		/* Special Metadata */

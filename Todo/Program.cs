@@ -26,14 +26,16 @@ namespace Todo
 		/// </param>
 		public static void Main (string[] args)
 		{
-			// Build the scanner table from the directory specified in args[0]
-			TaskScan scanner = new TaskScan (Transformations.Subsequence(args, (args[0].Equals("detailed")?1:2), args.Length()).ToArray(), "TODO", SearchOption.AllDirectories);
-			scanner.BuildTable ();
-
-			if (args.Length () < 3) {
+			if (args.Length () < 2) {
 				Help ();
 				return;
 			}
+
+			// Build the scanner table from the directory specified in args[0]
+			TaskScan scanner = new TaskScan (Transformations.Subsequence(args, (args[0].Equals("detailed")?1:2), args.Length()), "TODO", SearchOption.AllDirectories);
+			scanner.BuildTable ();
+
+
 
 			switch (args [0]) {
 			case "contract":

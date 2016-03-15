@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Todo", "Todo\Todo.csproj", "{6A6D56FD-ECFA-4B53-A316-8BB7D3B04C6E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HumDrum", "..\HumDrum\HumDrum\HumDrum.csproj", "{715D15D4-68CB-4E55-B9C6-DCFE791C9B00}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -13,8 +15,9 @@ Global
 		{6A6D56FD-ECFA-4B53-A316-8BB7D3B04C6E}.Debug|x86.Build.0 = Debug|x86
 		{6A6D56FD-ECFA-4B53-A316-8BB7D3B04C6E}.Release|x86.ActiveCfg = Release|x86
 		{6A6D56FD-ECFA-4B53-A316-8BB7D3B04C6E}.Release|x86.Build.0 = Release|x86
-	EndGlobalSection
-	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = Todo\Todo.csproj
+		{715D15D4-68CB-4E55-B9C6-DCFE791C9B00}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{715D15D4-68CB-4E55-B9C6-DCFE791C9B00}.Debug|x86.Build.0 = Debug|Any CPU
+		{715D15D4-68CB-4E55-B9C6-DCFE791C9B00}.Release|x86.ActiveCfg = Release|Any CPU
+		{715D15D4-68CB-4E55-B9C6-DCFE791C9B00}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

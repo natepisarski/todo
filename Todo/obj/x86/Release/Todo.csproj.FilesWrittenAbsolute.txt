@@ -3,3 +3,5 @@
 /home/nate/Code/todo/Todo/bin/Release/Todo.exe
 /home/nate/Code/todo/Todo/obj/x86/Release/Todo.exe
 /home/nate/Code/todo/Todo/obj/x86/Release/Todo.exe.mdb
+/home/nate/Code/todo/Todo/bin/Release/HumDrum.dll
+/home/nate/Code/todo/Todo/bin/Release/HumDrum.dll.mdb
