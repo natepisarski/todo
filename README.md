@@ -1,20 +1,28 @@
-# Todo
-Hey! Welcome to the Todo repository. Let's just get right down to business on what this project is.
+# Todo - Source Code TODO comment tracker
+**This is not a normal TODO application**, this is something else.
 
-Todo is a command-line productivity tool for scraping TODO comments out of your code. The code itself is a lot more flexible than the tool, so TODO comments must be formatted exactly like this:
-    TODO: thing
-Or, alternatively,
-    TODO name{itsName} dependencies{name,of,dependencies,in,comma,list,spaces allowed}: Blarg
+TODO applications have become the "advanced" version of the "Hello World" app in recent years. Despite the name, that's not what this app is.
 
-Name, dependencies, and file are the only 3 metadata tags that will mean anything. But you already know how to write TODO comments. So here is the tool:
+This is a TODO manager for `// TODO:` comments in source code, with dependency tracking.
+
+You can build a dependency graph just like a package manager would.
+
+**Example**
+```javascript
+export const getAccountProfile = () => {
+// TODO name{profile} dependencies{api}: Need the ability to call API endpoints to work
+};
+
+export const showUserPage = () => {
+// TODO name{user} dependencies{profile,api}: Need the profile page to continue
+}
+```
 
 # The Tool
-The command line tool parses all the text in the directories given to it and can listen to any of the following commands:
-* contract
-* detailed
-* remove
-
-Contract provides a list of all the tasks that must be completed in order to satisfy a named task's dependencies. Detailed gives information on ALL of the tasks found in a directory. Remove will remove tasks with that name from all of the files it's found in.
+The following 3 commands can be used:
+* `contract` provides a list of all tasks, and the order they need to be completed in
+* `detailed` gives information about every task, in the entire directory
+* `remove` will actually strike the TODO comment from the directory
 
 # License
 Everything in this repository is BSD 3 clause. Do with it as you will. 
